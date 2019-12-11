@@ -16,6 +16,7 @@ public class Fournisseur {
 	}
 	
 	
+	
 	/** Getter
 	 * @return the id
 	 */
@@ -39,6 +40,16 @@ public class Fournisseur {
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "("+id + ",'" + nom + "')";
 	}
 	
 	
