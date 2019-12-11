@@ -53,11 +53,19 @@ public class ArticleDaoJdbc implements ArticleDao {
 	}
 
 	public void moyenne(){
-		ResultSet curseur = Connect.select("SELECT AVG(PRIX) FROM ARTICLE ");
-				System.out.println(curseur);
+		ResultSet result = Connect.select("SELECT AVG(PRIX) FROM ARTICLE ");
+		
+				try {
+					while(result.next()){
+					System.out.println("la moyenne des prix est de : "+result.getString("AVG(PRIX)"));
+					}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+					e.printStackTrace();
+				}
 	}
-	public boolean deleteDes() {
-		Connect.cud("DELETE FROM ARICLE WHERE DESIGNATION lIKE '%PEINTURE%'");
+	public boolean deleteDes(String designation) {
+		Connect.cud("DELETE FROM ARTICLE WHERE DESIGNATION lIKE '%"+designation+"%'");
 		return false;
 	}
 	

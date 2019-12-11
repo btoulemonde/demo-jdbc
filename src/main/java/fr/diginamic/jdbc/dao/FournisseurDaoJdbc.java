@@ -43,7 +43,7 @@ public class FournisseurDaoJdbc implements FournisseurDao {
 
 	@Override
 	public boolean delete(Fournisseur fournisseur) {
-		Connect.cud("DELETE FROM FOURNISSEUR WHERE ID="+fournisseur.getId());
+		Connect.cud("DELETE FROM FOURNISSEUR WHERE ID="+fournisseur.getId() );
 		return false;
 	}
 
