@@ -31,19 +31,19 @@ public class FournisseurDaoJdbc implements FournisseurDao {
 
 	@Override
 	public void insert(Fournisseur fournisseur) {
-		Connect.insert("INSERT INTO FOURNISSEUR (ID,NOM) VALUES " + fournisseur.toString() );
+		Connect.cud("INSERT INTO FOURNISSEUR (ID,NOM) VALUES " + fournisseur.toString() );
 
 	}
 
 	@Override
 	public int update(String ancienNom, String nouveauNom) {
-		Connect.update("UPDATE FOURNISSEUR SET NOM='" +nouveauNom + "' WHERE NOM='"+ancienNom + "'");
+		Connect.cud("UPDATE FOURNISSEUR SET NOM='" +nouveauNom + "' WHERE NOM='"+ancienNom + "'");
 		return 0;
 	}
 
 	@Override
 	public boolean delete(Fournisseur fournisseur) {
-		Connect.delete("DELETE FROM FOURNISSEUR WHERE ID="+fournisseur.getId());
+		Connect.cud("DELETE FROM FOURNISSEUR WHERE ID="+fournisseur.getId());
 		return false;
 	}
 

@@ -40,7 +40,7 @@ public class Connect {
 		return conn;
 	}
 
-	public static void insert(String sql) {
+	public static void cud(String sql) {
 		
 		Connection connexion = null;
 		Statement statement = null;
@@ -76,76 +76,6 @@ public class Connect {
 		}
 	}
 
-	public static void update(String sql) {
-
-		Connection connexion = null;
-		Statement statement = null;
-		try {
-			connexion = getConnection();
-
-			statement = connexion.createStatement();
-
-			statement.executeUpdate(sql);
-
-		} catch (SQLException e) {
-			try {
-				if (connexion != null) {
-					connexion.rollback();
-				}
-			} catch (SQLException e1) {
-				System.out.println("echec du rollback");
-			}
-		} finally {
-			try {
-				if (statement != null) {
-					statement.close();
-				}
-				connexion.commit();
-				if (connexion != null) {
-					connexion.close();
-				}
-			} catch (SQLException e) {
-
-				System.out.println("echec de la fermeture des ressources");
-			}
-
-		}
-	}
-
-	public static void delete(String sql) {
-		Connection connexion = null;
-		Statement statement = null;
-		try {
-			connexion = getConnection();
-
-			statement = connexion.createStatement();
-
-			statement.executeUpdate(sql);
-
-		} catch (SQLException e) {
-			try {
-				if (connexion != null) {
-					connexion.rollback();
-				}
-			} catch (SQLException e1) {
-				System.out.println("echec du rollback");
-			}
-		} finally {
-			try {
-				if (statement != null) {
-					statement.close();
-				}
-				connexion.commit();
-				if (connexion != null) {
-					connexion.close();
-				}
-			} catch (SQLException e) {
-
-				System.out.println("echec de la fermeture des ressources");
-			}
-
-		}
-	}
 
 	public static ResultSet select(String sql) {
 		Connection connexion = null;

@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import org.mariadb.jdbc.Driver;
-
 public class TestConnexionJdbc {
 
 	public static void main(String[] args) {

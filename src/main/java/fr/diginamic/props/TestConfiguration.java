@@ -1,7 +1,5 @@
 package fr.diginamic.props;
 
-import java.util.Enumeration;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 

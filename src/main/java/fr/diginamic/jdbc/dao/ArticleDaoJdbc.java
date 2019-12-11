@@ -35,20 +35,20 @@ public class ArticleDaoJdbc implements ArticleDao {
 
 	@Override
 	public void insert(Article article) {
-		Connect.insert("INSERT INTO ARTICLE (ID, REF, DESIGNATION,PRIX, ID_FOU) VALUES (" + article.getId() + ",' " + article.getRef() + "','" + article.getDesignation() + "'," + article.getPrix()
+		Connect.cud("INSERT INTO ARTICLE (ID, REF, DESIGNATION,PRIX, ID_FOU) VALUES (" + article.getId() + ",' " + article.getRef() + "','" + article.getDesignation() + "'," + article.getPrix()
 				+ ",'" + article.getFournisseur() + "')");
 
 	}
 
 	@Override
 	public int update(String designation, String nouveauPrix) {
-		Connect.update("UPDATE ARTICLE SET PRIX ="+ nouveauPrix + "WHERE DESIGNATION LIKE '%" + designation + "%'");
+		Connect.cud("UPDATE ARTICLE SET PRIX ="+ nouveauPrix + "WHERE DESIGNATION LIKE '%" + designation + "%'");
 		return 0;
 	}
 
 	@Override
 	public boolean delete(Article article) {
-		Connect.delete("DELETE FROM ARICLE WHERE ID=" + article.getId());
+		Connect.cud("DELETE FROM ARICLE WHERE ID=" + article.getId());
 		return false;
 	}
 
@@ -57,7 +57,7 @@ public class ArticleDaoJdbc implements ArticleDao {
 				System.out.println(curseur);
 	}
 	public boolean deleteDes() {
-		Connect.delete("DELETE FROM ARICLE WHERE DESIGNATION lIKE '%PEINTURE%'");
+		Connect.cud("DELETE FROM ARICLE WHERE DESIGNATION lIKE '%PEINTURE%'");
 		return false;
 	}
 	
