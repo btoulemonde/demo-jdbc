@@ -5,11 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import fr.diginamic.jdbc.entites.Fournisseur;
 
 public class Connect {
 
@@ -19,7 +16,7 @@ public class Connect {
 	private static String user = bundle.getString("user");
 	private static String password = bundle.getString("password");
 
-	public static void driver() {
+	public static boolean driver() {
 
 		try {
 			Class.forName(driver);
@@ -27,14 +24,28 @@ public class Connect {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
+		return true;
+	}
+	public static Connection getConnection(){
+		if (driver() != true){
+			driver();
+		}
+		Connection conn =null;
+		try {
+			conn = DriverManager.getConnection(url, user, password);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return conn;
 	}
 
 	public static void insert(String sql) {
-		driver();
+		
 		Connection connexion = null;
 		Statement statement = null;
 		try {
-			connexion = DriverManager.getConnection(url, user, password);
+			connexion = getConnection();
 
 			statement = connexion.createStatement();
 
@@ -67,13 +78,10 @@ public class Connect {
 
 	public static void update(String sql) {
 
-		driver();
-
 		Connection connexion = null;
 		Statement statement = null;
-
 		try {
-			connexion = DriverManager.getConnection(url, user, password);
+			connexion = getConnection();
 
 			statement = connexion.createStatement();
 
@@ -105,12 +113,10 @@ public class Connect {
 	}
 
 	public static void delete(String sql) {
-		driver();
 		Connection connexion = null;
 		Statement statement = null;
-
 		try {
-			connexion = DriverManager.getConnection(url, user, password);
+			connexion = getConnection();
 
 			statement = connexion.createStatement();
 
@@ -141,24 +147,23 @@ public class Connect {
 		}
 	}
 
-	public static <E> void select(String sql, List<E> liste) {
-		driver();
+	public static ResultSet select(String sql) {
 		Connection connexion = null;
 		Statement statement = null;
+		ResultSet curseur = null;
 		try {
-			connexion = DriverManager.getConnection(url, user, password);
-
+			connexion = getConnection();
 			statement = connexion.createStatement();
-			ResultSet curseur = statement.executeQuery(sql);
+			curseur = statement.executeQuery(sql);
 
-			List<Fournisseur> fournisseurs = new ArrayList<>();
-			while (curseur.next()) {
-				int id = curseur.getInt("ID");
-				String nom = curseur.getString("NOM");
-				Fournisseur fourn = new Fournisseur(id, nom);
-				fournisseurs.add(fourn);
-				System.out.println(id + " / " + nom);
-			}
+//			liste = new ArrayList<>();
+//			while (curseur.next()) {
+//				int id = curseur.getInt("ID");
+//				String nom = curseur.getString("NOM");
+//				Fournisseur fourn = new Fournisseur(id, nom);
+//				liste.add(fourn);
+//				System.out.println(id + " / " + nom);
+//			}
 		} catch (SQLException e) {
 			
 		} finally {
@@ -175,6 +180,7 @@ public class Connect {
 			}
 
 		}
+		return curseur;
 	}
 
 }

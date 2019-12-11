@@ -7,6 +7,6 @@ import fr.diginamic.jdbc.entites.Article;
 public interface ArticleDao {
 	List<Article> extraire();
 	void insert(Article article);
-	int update(int ancienPrix, int nouveauPrix);
+	int update(String designation, String nouveauPrix);
 	boolean delete(Article article);
 }

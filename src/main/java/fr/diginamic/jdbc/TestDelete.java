@@ -7,11 +7,11 @@ import fr.diginamic.jdbc.entites.Fournisseur;
 public class TestDelete {
 
 	public static void main(String[] args){
-		Fournisseur fournisseur = new Fournisseur(4, null);
+		Fournisseur fournisseur = new Fournisseur(5, null);
 		FournisseurDaoJdbc delete = new FournisseurDaoJdbc();
 				delete.delete(fournisseur);
 		
-//		Connect.delete("DELETE FROM FOURNISSEUR WHERE ID=4 ");
+//		Connect.delete("DELETE FROM FOURNISSEUR WHERE ID=5 ");
 	}
 
 }

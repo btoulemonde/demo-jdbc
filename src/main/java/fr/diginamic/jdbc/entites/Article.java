@@ -5,22 +5,22 @@ public class Article   {
 	private String ref;
 	private String designation;
 	private double prix;
-	private Fournisseur fournisseur;
+	private int idFournisseur;
 	
 	/**
 	 * @param id
 	 * @param ref
 	 * @param designation
 	 * @param prix
-	 * @param fournisseur
+	 * @param idFournisseur
 	 */
-	public Article(int id, String ref, String designation, double prix, Fournisseur fournisseur) {
+	public Article(int id, String ref, String designation, double prix, int idFournisseur) {
 		super();
 		this.id = id;
 		this.ref = ref;
 		this.designation = designation;
 		this.prix = prix;
-		this.fournisseur = fournisseur;
+		this.idFournisseur = idFournisseur;
 	}
 	
 	
@@ -73,16 +73,29 @@ public class Article   {
 		this.prix = prix;
 	}
 	/** Getter
-	 * @return the fournisseur
+	 * @return the idFournisseur
 	 */
-	public Fournisseur getFournisseur() {
-		return fournisseur;
+	public int getFournisseur() {
+		return idFournisseur;
 	}
 	/** Setter
 	 * @param fournisseur the fournisseur to set
 	 */
-	public void setFournisseur(Fournisseur fournisseur) {
-		this.fournisseur = fournisseur;
+	public void setFournisseur(int idFournisseur) {
+		this.idFournisseur = idFournisseur;
 	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return  id + " / " + ref + " / " + designation + " / " + prix
+				+ " / " + idFournisseur ;
+	}
+
+
+	
 
 }

@@ -49,7 +49,7 @@ public class Fournisseur {
 	 */
 	@Override
 	public String toString() {
-		return "("+id + ",'" + nom + "')";
+		return id + " / " + nom ;
 	}
 	
 	

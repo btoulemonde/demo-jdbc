@@ -1,14 +1,9 @@
 package fr.diginamic.jdbc.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-
 import fr.diginamic.jdbc.entites.Fournisseur;
 import fr.diginamic.jdbc.utils.Connect;
 
@@ -16,10 +11,22 @@ public class FournisseurDaoJdbc implements FournisseurDao {
 
 	@Override
 	public List<Fournisseur> extraire() {
-		List<Fournisseur> fournisseur = null;
-		Connect.select("SELECT * FROM FOURNISSEUR", fournisseur);
-
-		return fournisseur;
+		List<Fournisseur> liste = new ArrayList<>();
+		ResultSet curseur = Connect.select("SELECT * FROM FOURNISSEUR");
+	
+		try {
+			while (curseur.next()) {
+				int id = curseur.getInt("ID");
+				String nom = curseur.getString("NOM");
+				Fournisseur fourn = new Fournisseur(id, nom);
+				liste.add(fourn);
+				System.out.println(fourn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return liste;
 	}
 
 	@Override
