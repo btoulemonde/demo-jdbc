@@ -27,7 +27,7 @@ public class Connect {
 		return true;
 	}
 	public static Connection getConnection(){
-		if (driver() != true){
+		if (driver()){
 			driver();
 		}
 		Connection conn =null;
@@ -40,18 +40,20 @@ public class Connect {
 		return conn;
 	}
 
-	public static void cud(String sql) {
+	public static int cud(String sql) {
 		
 		Connection connexion = null;
 		Statement statement = null;
+		int nb = 0;
 		try {
 			connexion = getConnection();
 
 			statement = connexion.createStatement();
 
-			statement.executeUpdate(sql);
+			nb = statement.executeUpdate(sql);
 
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			try {
 				if (connexion != null) {
 					connexion.rollback();
@@ -74,6 +76,7 @@ public class Connect {
 			}
 
 		}
+		return nb;
 	}
 
 

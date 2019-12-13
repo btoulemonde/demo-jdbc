@@ -42,8 +42,8 @@ public class ArticleDaoJdbc implements ArticleDao {
 
 	@Override
 	public int update(String designation, String nouveauPrix) {
-		Connect.cud("UPDATE ARTICLE SET PRIX ="+ nouveauPrix + "WHERE DESIGNATION LIKE '%" + designation + "%'");
-		return 0;
+		int nb = Connect.cud("UPDATE ARTICLE SET PRIX ="+ nouveauPrix + "WHERE DESIGNATION LIKE '%" + designation + "%'");
+		return nb;
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class ArticleDaoJdbc implements ArticleDao {
 	}
 	public boolean deleteDes(String designation) {
 		Connect.cud("DELETE FROM ARTICLE WHERE DESIGNATION lIKE '%"+designation+"%'");
-		return false;
+		return true;
 	}
 	
 }

@@ -31,20 +31,20 @@ public class FournisseurDaoJdbc implements FournisseurDao {
 
 	@Override
 	public void insert(Fournisseur fournisseur) {
-		Connect.cud("INSERT INTO FOURNISSEUR (ID,NOM) VALUES " + fournisseur.toString() );
+		Connect.cud("INSERT INTO FOURNISSEUR (ID,NOM) VALUES( "+fournisseur.getId() +  ",'"+fournisseur.getNom()+"')");
 
 	}
 
 	@Override
 	public int update(String ancienNom, String nouveauNom) {
-		Connect.cud("UPDATE FOURNISSEUR SET NOM='" +nouveauNom + "' WHERE NOM='"+ancienNom + "'");
-		return 0;
+		int nb = Connect.cud("UPDATE FOURNISSEUR SET NOM='" +nouveauNom + "' WHERE NOM='"+ancienNom + "'");
+		return nb;
 	}
 
 	@Override
 	public boolean delete(Fournisseur fournisseur) {
 		Connect.cud("DELETE FROM FOURNISSEUR WHERE ID="+fournisseur.getId() );
-		return false;
+		return true;
 	}
 
 }
